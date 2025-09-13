@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLearn – Learn Smarter</title>
+  <!-- Fonts & AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#6a11cb; /* violet */
+      --primary-2:#8e2de2; /* purple */
+      --accent:#4a00e0;   /* deep purple */
+      --bg:#0f1020;       /* dark backdrop for sections if needed */
+      --text:#2b2b2b;
+      --muted:#666;
+      --card:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,.12);
+      --radius:18px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--text);background:#f6f6fb;line-height:1.6}
+    img{max-width:100%;display:block;border-radius:14px}
+    a{text-decoration:none}
+
+    /* ===== NAVBAR ===== */
+    header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:.35s}
+    .nav-wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.25rem;color:var(--accent)}
+    .brand-badge{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;color:#fff;font-weight:700}
+    nav ul{list-style:none;display:flex;gap:26px}
+    nav a{color:#2b2b2b;font-weight:500;opacity:.9}
+    nav a:hover{color:var(--accent)}
+    .auth{display:flex;align-items:center;gap:10px}
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;transition:.25s}
+    .btn-primary{background:#fff;color:var(--accent);border:2px solid transparent}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .btn-ghost{border:2px solid rgba(74,0,224,.25);color:var(--accent);background:transparent}
+    .btn-ghost:hover{background:#fff;box-shadow:var(--shadow)}
+
+    /* sticky style after scroll */
+    .sticky{background:#ffffffcc;backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.08)}
+
+    /* ===== HERO ===== */
+    .hero{padding-top:110px;background:linear-gradient(120deg,var(--primary),var(--primary-2));color:#fff}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;padding:60px 20px 90px}
+    .eyebrow{letter-spacing:.25em;font-size:.78rem;font-weight:700;opacity:.9}
+    .title{font-size:3rem;line-height:1.15;margin:10px 0 14px}
+    .subtitle{opacity:.95;font-size:1.1rem;margin-bottom:26px}
+    .cta-wrap{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-cta{background:#fff;color:var(--accent)}
+    .btn-cta:hover{transform:translateY(-3px);box-shadow:0 18px 35px rgba(0,0,0,.18)}
+    .btn-outline{border:2px solid #ffffff66;color:#fff}
+    .btn-outline:hover{background:#ffffff1a}
+    .hero-card{background:#ffffff10;border:1px solid #ffffff22;padding:12px;border-radius:16px}
+
+    /* ===== FEATURE STRIP ===== */
+    .features{max-width:1200px;margin:-40px auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feat{border-radius:var(--radius);padding:22px 22px 20px;color:#fff;box-shadow:var(--shadow)}
+    .feat h3{font-size:1.05rem;margin-bottom:6px}
+    .feat p{font-size:.92rem;opacity:.95}
+    .f1{background:linear-gradient(135deg,#7b4397,#dc2430)}
+    .f2{background:linear-gradient(135deg,#4776e6,#8e54e9)}
+    .f3{background:linear-gradient(135deg,#43cea2,#185a9d)}
+
+    /* ===== ABOUT ===== */
+    section{padding:80px 20px}
+    .container{max-width:1200px;margin:0 auto}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    h2.section-title{font-size:2rem;margin-bottom:14px;color:var(--accent)}
+    .muted{color:var(--muted)}
+
+    /* ===== COURSES ===== */
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;transition:transform .25s, box-shadow .25s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+    .chip{display:inline-block;padding:6px 12px;border-radius:999px;font-size:.8rem;font-weight:600;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;margin-bottom:10px}
+
+    /* ===== CONTACT ===== */
+    form{max-width:680px;margin:0 auto;display:grid;gap:14px}
+    input, textarea{padding:14px 16px;border:1px solid #e6e6ef;border-radius:12px;font-size:1rem;background:#fff}
+    textarea{min-height:140px;resize:vertical}
+    .btn-send{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border:none}
+
+    /* ===== FOOTER ===== */
+    footer{background:#0e0822;color:#cfc8ff;padding:26px 20px;text-align:center}
+    footer a{color:#fff;opacity:.85}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:1024px){
+      .hero-inner{grid-template-columns:1fr;gap:28px;text-align:center}
+      .cta-wrap{justify-content:center}
+      .features{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      nav ul{display:none}
+      .title{font-size:2.2rem}
+      .grid{grid-template-columns:1fr}
+      .auth .btn{padding:10px 14px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar">
+    <div class="nav-wrap">
+      <div class="brand">
+        <div class="brand-badge">E</div>
+        EduLearn
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="auth">
+        <a class="btn btn-ghost" href="#signup">Sign Up</a>
+        <a class="btn btn-primary" href="#login">Log In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div data-aos="fade-right">
+        <div class="eyebrow">ABOUT US</div>
+        <h1 class="title">We are the top <br> <span style="color:#ffe36e">Learning Platform.</span></h1>
+        <p class="subtitle">Learn job‑ready skills with expert mentors, flexible schedules, and hands‑on projects. Start today and level up your career.</p>
+        <div class="cta-wrap">
+          <a href="#courses" class="btn btn-cta">Register Now</a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1584697964190-5b4e7b2d0f3a?q=80&w=1200&auto=format&fit=crop" alt="Teacher with students">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURE STRIP ===== -->
+  <div class="features">
+    <div class="feat f1" data-aos="fade-up">
+      <h3>Quality Teachers</h3>
+      <p>Industry experts and certified instructors leading every course.</p>
+    </div>
+    <div class="feat f2" data-aos="fade-up" data-aos-delay="120">
+      <h3>Best Curriculum</h3>
+      <p>Project‑based learning with real‑world assignments and feedback.</p>
+    </div>
+    <div class="feat f3" data-aos="fade-up" data-aos-delay="240">
+      <h3>Global Recognition</h3>
+      <p>Certificates you can showcase on LinkedIn and resumes worldwide.</p>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container split">
+      <div data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop" alt="Students learning online">
+      </div>
+      <div data-aos="fade-left">
+        <h2 class="section-title">Why choose EduLearn?</h2>
+        <p class="muted">We combine community, mentorship, and practical projects to help you learn faster. Track your progress, build a portfolio, and get interview‑ready with mock tests and career guidance.</p>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="chip">Mentor Support</span>
+          <span class="chip">Flexible Batches</span>
+          <span class="chip">Job Assistance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COURSES ===== -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Popular Courses</h2>
+      <div class="grid" style="margin-top:16px">
+        <div class="card" data-aos="zoom-in">
+          <span class="chip">Web Dev</span>
+          <h3>Full‑Stack Web Development</h3>
+          <p class="muted">HTML, CSS, JavaScript, React, Node, DB – build and deploy real apps.</p>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="120">
+          <span class="chip">Data</span>
+          <h3>Data Science with Python</h3>
+          <p class="muted">Pandas, visualization, ML models, and end‑to‑end data projects.</p>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="180">
+          <span class="chip">AI/ML</span>
+          <h3>Machine Learning Essentials</h3>
+          <p class="muted">From regression to neural nets with hands‑on notebooks.</p>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="240">
+          <span class="chip">Cloud</span>
+          <h3>Cloud Computing Basics</h3>
+          <p class="muted">Learn AWS/Azure fundamentals and deploy scalable services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+      <p class="muted" style="text-align:center;margin-bottom:18px" data-aos="fade-up" data-aos-delay="120">Questions about courses or enrollment? Send us a message.</p>
+      <form data-aos="fade-up" data-aos-delay="200">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button class="btn btn-send" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 EduLearn. All rights reserved. | <span style="opacity:.9">made by Ankit</span></p>
+  </footer>
+
+  <!-- AOS & Small JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:900, once:true, offset:80});
+
+    // sticky navbar background on scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) nav.classList.add('sticky');
+      else nav.classList.remove('sticky');
+    });
+  </script>
+</body>
+</html>
